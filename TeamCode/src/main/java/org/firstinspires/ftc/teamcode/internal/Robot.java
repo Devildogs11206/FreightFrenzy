@@ -263,7 +263,7 @@ public class Robot {
     }
 
     public enum IntakeMode {
-        FORWARD(0.50), NEUTRAL(0), REVERSE(-0.50), CAROUSEL(0.15), REVERSECAROUSEL(-0.15);
+        OUT(0.50), NEUTRAL(0), IN(-0.50), CAROUSEL(0.15), REVERSECAROUSEL(-0.15);
 
         public double power;
 
