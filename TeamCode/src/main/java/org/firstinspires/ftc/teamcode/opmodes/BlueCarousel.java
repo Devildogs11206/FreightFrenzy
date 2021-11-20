@@ -23,7 +23,7 @@ public class BlueCarousel extends BlueOpMode {
         robot.drive(1,0, 180,13);
         robot.drive(0,0,180,0);
         robot.intake(REVERSECAROUSEL,5000);
-        robot.drive(-1,0,180,13.1);
+        robot.drive(-1,0,180,12.5);
         robot.lift(FORWARD);
     }
 }
