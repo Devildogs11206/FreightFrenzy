@@ -16,7 +16,6 @@ public class BlueCarouselWearhousePos1 extends BlueOpMode {
         robot.drivePower = .5;
         robot.lift(MAX);
         robot.drive(1,0,0, 24);
-        robot.turn(1,45);
         robot.drive(1,0,45,8);
         robot.intake(FORWARD,500);
         robot.drive(-1,0,45,8);
