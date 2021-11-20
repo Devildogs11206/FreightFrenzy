@@ -17,6 +17,6 @@ public class RedWarehouseStrafe extends RedOpMode{
         robot.drive(-1,0,45,8);
         robot.drive(0,1,-90,30);
         robot.drive(1,0,-90,36);
-        robot.drive(0,1,90,20);
+        robot.drive(0,-1,-90,20);
     }
 }

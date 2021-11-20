@@ -20,7 +20,7 @@ public class RedCarousel extends RedOpMode {
         robot.drive(-1,0,-45,8);
         robot.drive(-1,0,-90, 30);
         robot.lift(CAROUSEL2);
-        robot.drive(1,0,-180,13.1);
+        robot.drive(1,0,-180,12);
         robot.drive(0,0,-180,0);
         robot.intake(REVERSECAROUSEL,5000);
         robot.drive(-1,0,-180,13.1);
