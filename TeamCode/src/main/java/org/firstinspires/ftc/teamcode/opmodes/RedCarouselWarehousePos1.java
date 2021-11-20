@@ -28,8 +28,8 @@ public class RedCarouselWarehousePos1 extends RedOpMode{
         robot.drive(-1,0,-180,5);
         robot.drive(0,-1,-180,69);
         robot.drive(1,0,-90,0);
-        robot.drive(0,1,-90,22);
-        robot.drive(1,0,-90,43);
+        robot.drive(0,1,-90,24);
+        robot.drive(1,0,-90,48);
         robot.lift(FORWARD);
     }
 }
