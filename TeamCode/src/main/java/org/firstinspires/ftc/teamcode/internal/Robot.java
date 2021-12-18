@@ -13,7 +13,6 @@ import org.firstinspires.ftc.teamcode.opmodes.OpMode;
 
 import static com.qualcomm.robotcore.hardware.DcMotor.RunMode.RUN_TO_POSITION;
 import static com.qualcomm.robotcore.hardware.DcMotor.RunMode.RUN_USING_ENCODER;
-import static com.qualcomm.robotcore.hardware.DcMotor.RunMode.RUN_WITHOUT_ENCODER;
 import static com.qualcomm.robotcore.hardware.DcMotor.RunMode.STOP_AND_RESET_ENCODER;
 import static com.qualcomm.robotcore.hardware.DcMotor.ZeroPowerBehavior.BRAKE;
 import static com.qualcomm.robotcore.hardware.DcMotorSimple.Direction.FORWARD;
@@ -247,7 +246,7 @@ public class Robot {
     }
 
     public enum LiftPosition {
-        FORWARD(0), LOWGOAL(-1250), MIDGOAL(-2900), CAROUSEL(-2850), MAX(-4000), CAROUSEL2(-2850);
+        FORWARD(0), LOWGOAL(-1250), MIDGOAL(-2900), CAROUSEL(-2850), MAX(-7097), CAROUSEL2(-2850);
 
         public int position;
 

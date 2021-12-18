@@ -6,8 +6,6 @@ import static org.firstinspires.ftc.teamcode.internal.Robot.LiftPosition.MAX;
 
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 
-import org.firstinspires.ftc.teamcode.internal.Robot;
-
 @Autonomous
 public class RedWarehouseStrafe extends RedOpMode{
     @Override
