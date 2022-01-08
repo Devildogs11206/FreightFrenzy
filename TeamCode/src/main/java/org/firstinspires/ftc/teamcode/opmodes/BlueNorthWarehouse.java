@@ -10,7 +10,7 @@ public class BlueNorthWarehouse extends BlueNorth {
     protected void execute() {
         super.execute();
 
-        robot.drive(-1,0,-90,60);
+        robot.drive(-2,0,-90,60);
         robot.lift(FORWARD);
     }
 }

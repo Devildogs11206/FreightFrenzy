@@ -5,7 +5,7 @@ import static org.firstinspires.ftc.teamcode.internal.Robot.LiftPosition.FORWARD
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 
 @Autonomous
-public class RedSouthStorage extends BlueSouth {
+public class RedSouthStorage extends RedSouth {
     @Override
     protected void execute() {
         super.execute();

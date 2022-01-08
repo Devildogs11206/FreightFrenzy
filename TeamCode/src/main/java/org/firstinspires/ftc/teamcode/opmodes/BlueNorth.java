@@ -15,5 +15,6 @@ public abstract class BlueNorth extends BlueOpMode {
         robot.drive(1,0,0, 24);
         robot.drive(1,0,-45,8);
         robot.intake(OUT,500);
+        robot.drive(-1,0,-45,4);
     }
 }

@@ -12,10 +12,7 @@ public class BlueSouthWearhouse extends BlueSouth {
        super.execute();
 
         robot.drive(-1,0,180,5);
-        robot.drive(0,1,180,69);
-        robot.drive(1,0,90,0);
-        robot.drive(0,-1,90,24);
-        robot.drive(1,0,90,72);
+        robot.drive(2,0,90,120);
         robot.lift(FORWARD);
     }
 }

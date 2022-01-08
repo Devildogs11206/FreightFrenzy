@@ -10,7 +10,7 @@ public class BlueNorthStorage extends BlueNorth {
     protected void execute() {
         super.execute();
 
-        robot.drive(1,0,-90,84);
+        robot.drive(-1,0,90,84);
         robot.lift(FORWARD);
     }
 }
