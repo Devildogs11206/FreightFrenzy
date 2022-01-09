@@ -9,7 +9,6 @@ public class BlueSouthStorage extends BlueSouth {
     @Override
     protected void execute() {
         super.execute();
-
         robot.drive(-1,0,180,12.5);
         robot.lift(FORWARD);
     }

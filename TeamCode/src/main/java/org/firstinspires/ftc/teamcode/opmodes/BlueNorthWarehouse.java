@@ -9,8 +9,10 @@ public class BlueNorthWarehouse extends BlueNorth {
     @Override
     protected void execute() {
         super.execute();
-
-        robot.drive(-2,0,-90,60);
+        robot.drive(0,1,-90,35);
+        robot.drive(-1,0,-90,33);
+        robot.drive(0,-1,-90,34);
+        robot.drive(-1,0,-90,29);
         robot.lift(FORWARD);
     }
 }

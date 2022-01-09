@@ -15,8 +15,8 @@ public class RedNorth extends RedOpMode {
         robot.drivePower = 0.5;
         robot.lift(HIGHGOAL);
         robot.drive(1,0,0, 24);
-        robot.drive(1,0,-45,8);
+        robot.drive(1,0,45,8);
         robot.intake(OUT,500);
-        robot.drive(-1,0,-45,4);
+        robot.drive(-1,0,45,4);
     }
 }
