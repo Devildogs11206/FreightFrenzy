@@ -5,6 +5,7 @@ import static org.firstinspires.ftc.teamcode.internal.Alliance.UNKNOWN;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 
 import org.firstinspires.ftc.teamcode.controllers.DriveController;
+import org.firstinspires.ftc.teamcode.controllers.ElementLiftController;
 import org.firstinspires.ftc.teamcode.controllers.IntakeController;
 import org.firstinspires.ftc.teamcode.controllers.LiftController;
 import org.firstinspires.ftc.teamcode.controllers.RecorderController;
@@ -27,7 +28,8 @@ public class TeleOpMode extends OpMode {
             new RecorderController(this),
             new DriveController(this),
             new LiftController(this),
-            new IntakeController(this)
+            new IntakeController(this),
+            new ElementLiftController(this)
         };
 
         while (isActive()) {

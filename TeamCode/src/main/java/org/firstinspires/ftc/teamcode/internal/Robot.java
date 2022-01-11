@@ -4,6 +4,7 @@ import com.qualcomm.hardware.bosch.BNO055IMU;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DigitalChannel;
 import com.qualcomm.robotcore.hardware.HardwareMap;
+import com.qualcomm.robotcore.hardware.Servo;
 
 import org.firstinspires.ftc.robotcore.external.Telemetry;
 import org.firstinspires.ftc.robotcore.external.navigation.DistanceUnit;
@@ -49,6 +50,8 @@ public class Robot {
     private DigitalChannel liftLimitRightFront;
 
     private DcMotor intake;
+
+    private Servo elementLift;
 
     public boolean navigationTargetVisible = false;
     public Position position = new Position(DistanceUnit.INCH, 0, 0, 0, 0);
@@ -115,6 +118,8 @@ public class Robot {
         intake.setZeroPowerBehavior(BRAKE);
         intake.setMode(STOP_AND_RESET_ENCODER);
         intake.setMode(RUN_USING_ENCODER);
+
+        elementLift = hardwareMap.get(Servo.class, "elementLift");
     }
 
     public void calibrate() {
@@ -246,7 +251,7 @@ public class Robot {
     }
 
     public enum LiftPosition {
-        FORWARD(0), LOWGOAL(-1250), MIDGOAL(-2900),HIGHGOAL(-4332), MAX(-10886), CAROUSEL(-3000);
+        FORWARD(0), LOWGOAL(-1400), MIDGOAL(-2900),HIGHGOAL(-4332), MAX(-10886), CAROUSEL(-3000);
 
         public int position;
 
@@ -281,6 +286,20 @@ public class Robot {
         intake(IntakeMode.NEUTRAL);
     }
 
+    public enum ElementLiftPosition{
+        HIGH(0), MID(0.15), LOW(0.3);
+
+        public double position;
+
+        ElementLiftPosition(double position) {
+            this.position = position;
+        }
+    }
+
+    public void elementLift(ElementLiftPosition position) {
+        elementLift.setPosition(position.position);
+    }
+
     public void addTelemetry() {
         Telemetry telemetry = opMode.telemetry;
 
@@ -295,6 +314,7 @@ public class Robot {
         telemetry.addData("Intake", "%.2f Pow, %d Pos", intake.getPower(), intake.getCurrentPosition());
         telemetry.addData("Lift Limit Left Front", liftLimitLeftFront.getState());
         telemetry.addData("Lift Limit Right Front", liftLimitRightFront.getState());
+        telemetry.addData("Element Lift","%.2f Pos",elementLift.getPosition());
 
         telemetry.addLine();
 
