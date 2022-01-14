@@ -226,7 +226,7 @@ public class Robot {
     }
 
     public enum LiftMode {
-        STOPPED(0), FORWARD(1.00), BACKWARD(-1.00);
+        STOPPED(0), FORWARD(1), BACKWARD(-1);
 
         public double power;
 
@@ -251,7 +251,7 @@ public class Robot {
     }
 
     public enum LiftPosition {
-        FORWARD(0), LOWGOAL(-1400), MIDGOAL(-2900),HIGHGOAL(-4332), MAX(-10886), CAROUSEL(-3000);
+        FORWARD(0), LOWGOAL(-1400), MIDGOAL(-2900),HIGHGOAL(-4332), MAX(-10886), CAROUSEL(-3025); //changed CAROUSEL from -3000 to -3025
 
         public int position;
 

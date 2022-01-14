@@ -11,8 +11,8 @@ public class RedSouthWarehouse extends RedSouth {
     protected void execute() {
         super.execute();
         robot.drivePower = .6;
-        robot.drive(-1,0,180,5);
-        robot.drive(2,0,-90,132);
+        robot.drive(-1,0,180,4);   //changed from 5 to 4 in an experiment
+        robot.drive(2,0,-90,111); //changed from 132 to 111 inches
         robot.lift(FORWARD);
     }
 }
