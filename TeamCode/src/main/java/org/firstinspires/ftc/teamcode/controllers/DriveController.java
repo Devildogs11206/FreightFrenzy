@@ -3,6 +3,7 @@ package org.firstinspires.ftc.teamcode.controllers;
 import org.firstinspires.ftc.teamcode.opmodes.OpMode;
 
 public class DriveController extends RobotController {
+    private static final double STEROIDS = 1;
     private static final double HIGH = 0.75;
     private static final double MEDIUM = .5;
     private static final double LOW = .25;
@@ -13,7 +14,8 @@ public class DriveController extends RobotController {
 
     @Override
     public void execute() {
-        if (gamepad1.dpad_up) robot.drivePower = HIGH;
+        if (gamepad1.b) robot.drivePower = STEROIDS;
+        else if (gamepad1.dpad_up) robot.drivePower = HIGH;
         else if (gamepad1.dpad_left || gamepad1.dpad_right) robot.drivePower = MEDIUM;
         else if (gamepad1.dpad_down) robot.drivePower = LOW;
         else if (gamepad1.x) robot.driveTest();
