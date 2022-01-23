@@ -10,6 +10,7 @@ public class Calibrate extends BlueOpMode {
     @Override
     protected void execute() {
        robot.lift(HIGHGOAL);
+       this.sleep(3000);
        robot.start();
     }
 }

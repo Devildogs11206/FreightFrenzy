@@ -10,5 +10,6 @@ public class LiftTest extends BlueOpMode {
     @Override
     protected void execute() {
        robot.lift(CAROUSEL);
+       this.sleep(30000);
     }
 }
