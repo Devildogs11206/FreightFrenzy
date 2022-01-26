@@ -329,6 +329,8 @@ public class Robot {
     public void addTelemetry() {
         Telemetry telemetry = opMode.telemetry;
 
+        telemetry.addData("Time","%.2fs", opMode.time);
+
         telemetry.addData("Drive", "%.2f Pow", opMode.gamepad1.left_stick_y);
         telemetry.addData("Turn", "%.2f Pow", opMode.gamepad1.right_stick_x);
         telemetry.addData("Drive (LF)", "%.2f Pow, %d Pos", driveLeftFront.getPower(), driveLeftFront.getCurrentPosition());
