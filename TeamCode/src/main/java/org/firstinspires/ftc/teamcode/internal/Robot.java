@@ -1,8 +1,10 @@
 package org.firstinspires.ftc.teamcode.internal;
 
 import com.qualcomm.hardware.bosch.BNO055IMU;
+import com.qualcomm.hardware.rev.RevBlinkinLedDriver;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DigitalChannel;
+import com.qualcomm.robotcore.hardware.DistanceSensor;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.qualcomm.robotcore.hardware.Servo;
 
@@ -12,6 +14,13 @@ import org.firstinspires.ftc.robotcore.external.navigation.Orientation;
 import org.firstinspires.ftc.robotcore.external.navigation.Position;
 import org.firstinspires.ftc.teamcode.opmodes.OpMode;
 
+import static com.qualcomm.hardware.rev.RevBlinkinLedDriver.BlinkinPattern.BLACK;
+import static com.qualcomm.hardware.rev.RevBlinkinLedDriver.BlinkinPattern.GRAY;
+import static com.qualcomm.hardware.rev.RevBlinkinLedDriver.BlinkinPattern.GREEN;
+import static com.qualcomm.hardware.rev.RevBlinkinLedDriver.BlinkinPattern.HEARTBEAT_GRAY;
+import static com.qualcomm.hardware.rev.RevBlinkinLedDriver.BlinkinPattern.LIGHT_CHASE_GRAY;
+import static com.qualcomm.hardware.rev.RevBlinkinLedDriver.BlinkinPattern.RAINBOW_LAVA_PALETTE;
+import static com.qualcomm.hardware.rev.RevBlinkinLedDriver.BlinkinPattern.YELLOW;
 import static com.qualcomm.robotcore.hardware.DcMotor.RunMode.RUN_TO_POSITION;
 import static com.qualcomm.robotcore.hardware.DcMotor.RunMode.RUN_USING_ENCODER;
 import static com.qualcomm.robotcore.hardware.DcMotor.RunMode.STOP_AND_RESET_ENCODER;
@@ -29,6 +38,11 @@ public class Robot {
     private static final double INCHES_PER_ROTATION = 3.95 * Math.PI;
     private static final double TICKS_PER_INCH = 537.6 / INCHES_PER_ROTATION;
 
+    private static RevBlinkinLedDriver.BlinkinPattern DEFAULT_COLOR = GRAY;
+    private static RevBlinkinLedDriver.BlinkinPattern READY_COLOR = HEARTBEAT_GRAY;
+    private static RevBlinkinLedDriver.BlinkinPattern PICKUP_COLOR = GREEN;
+    private static RevBlinkinLedDriver.BlinkinPattern TARGET_COLOR = YELLOW;
+
     private final OpMode opMode;
 
     private BNO055IMU imu;
@@ -44,6 +58,8 @@ public class Robot {
     private DcMotor driveLeftRear;
     private DcMotor driveRightRear;
 
+    private RevBlinkinLedDriver lights;
+
     private DcMotor lift;
 
     private DigitalChannel liftLimitLeftFront;
@@ -52,6 +68,8 @@ public class Robot {
     private DcMotor intake;
 
     private Servo elementLift;
+
+    public DistanceSensor distanceSensor;
 
     public boolean navigationTargetVisible = false;
     public Position position = new Position(DistanceUnit.INCH, 0, 0, 0, 0);
@@ -102,6 +120,8 @@ public class Robot {
         driveRightRear.setMode(STOP_AND_RESET_ENCODER);
         driveRightRear.setMode(RUN_USING_ENCODER);
 
+        lights = hardwareMap.get(RevBlinkinLedDriver.class,"lights");
+
         lift = hardwareMap.get(DcMotor.class, "lift");
         lift.setDirection(FORWARD);
         lift.setZeroPowerBehavior(BRAKE);
@@ -120,6 +140,8 @@ public class Robot {
         intake.setMode(RUN_USING_ENCODER);
 
         elementLift = hardwareMap.get(Servo.class, "elementLift");
+
+        distanceSensor = hardwareMap.get(DistanceSensor.class, "distanceSensor");
     }
 
     public void calibrate() {
@@ -225,6 +247,10 @@ public class Robot {
         drive(0, 0, 0);
     }
 
+    public void setLights(RevBlinkinLedDriver.BlinkinPattern pattern) {
+        lights.setPattern(pattern == BLACK ? DEFAULT_COLOR : pattern);
+    }
+
     public enum LiftMode {
         STOPPED(0), FORWARD(1), BACKWARD(-1);
 
@@ -315,6 +341,7 @@ public class Robot {
         telemetry.addData("Lift Limit Left Front", liftLimitLeftFront.getState());
         telemetry.addData("Lift Limit Right Front", liftLimitRightFront.getState());
         telemetry.addData("Element Lift","%.2f Pos",elementLift.getPosition());
+        telemetry.addData("Distance Sensor", "%.01f in", distanceSensor.getDistance(DistanceUnit.INCH));
 
         telemetry.addLine();
 

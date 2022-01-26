@@ -8,6 +8,7 @@ import org.firstinspires.ftc.teamcode.controllers.DriveController;
 import org.firstinspires.ftc.teamcode.controllers.ElementLiftController;
 import org.firstinspires.ftc.teamcode.controllers.IntakeController;
 import org.firstinspires.ftc.teamcode.controllers.LiftController;
+import org.firstinspires.ftc.teamcode.controllers.LightsController;
 import org.firstinspires.ftc.teamcode.controllers.RecorderController;
 import org.firstinspires.ftc.teamcode.controllers.RobotController;
 import org.firstinspires.ftc.teamcode.internal.Alliance;
@@ -29,7 +30,8 @@ public class TeleOpMode extends OpMode {
             new DriveController(this),
             new LiftController(this),
             new IntakeController(this),
-            new ElementLiftController(this)
+            new ElementLiftController(this),
+            new LightsController(this)
         };
 
         while (isActive()) {
