@@ -75,6 +75,8 @@ public class Robot {
     public Position position = new Position(DistanceUnit.INCH, 0, 0, 0, 0);
     public Orientation orientation = new Orientation();
 
+    private TelemetryThread telemetryThread;
+
     public String error;
 
     public Robot(OpMode opMode) {
@@ -142,6 +144,9 @@ public class Robot {
         elementLift = hardwareMap.get(Servo.class, "elementLift");
 
         distanceSensor = hardwareMap.get(DistanceSensor.class, "distanceSensor");
+
+        telemetryThread = new TelemetryThread(opMode,this);
+        telemetryThread.start();
     }
 
     public void calibrate() {

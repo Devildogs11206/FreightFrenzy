@@ -4,8 +4,7 @@ import static org.firstinspires.ftc.teamcode.internal.Alliance.RED;
 
 import org.firstinspires.ftc.teamcode.internal.Alliance;
 
-
-public class RedOpMode extends TeleOpMode {
+public abstract class RedOpMode extends OpMode {
     @Override
     protected Alliance getAlliance() { return RED; }
 }

@@ -1,7 +1,10 @@
 package org.firstinspires.ftc.teamcode.opmodes;
 
+import static org.firstinspires.ftc.teamcode.internal.Alliance.UNKNOWN;
+
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 
+import org.firstinspires.ftc.teamcode.internal.Alliance;
 import org.firstinspires.ftc.teamcode.internal.Robot;
 
 public abstract class OpMode extends LinearOpMode {
@@ -23,6 +26,7 @@ public abstract class OpMode extends LinearOpMode {
         robot.init();
         if (calibrate) robot.calibrate();
         waitForStart();
+        resetStartTime();
         sleep(250);
         robot.start();
         sleep(250);
@@ -40,6 +44,10 @@ public abstract class OpMode extends LinearOpMode {
     }
 
     protected abstract void execute();
+
+    protected Alliance getAlliance() {
+        return UNKNOWN;
+    }
 
     private void yield() {
         Thread.yield();
