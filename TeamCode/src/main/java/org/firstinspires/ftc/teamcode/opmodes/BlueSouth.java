@@ -1,5 +1,6 @@
 package org.firstinspires.ftc.teamcode.opmodes;
 
+import static org.firstinspires.ftc.robotcore.external.navigation.DistanceUnit.INCH;
 import static org.firstinspires.ftc.teamcode.internal.Robot.IntakeMode.OUT;
 import static org.firstinspires.ftc.teamcode.internal.Robot.IntakeMode.REVERSECAROUSEL;
 import static org.firstinspires.ftc.teamcode.internal.Robot.LiftPosition.CAROUSEL;
@@ -8,6 +9,7 @@ import static org.firstinspires.ftc.teamcode.internal.Robot.LiftPosition.HIGHGOA
 import static org.firstinspires.ftc.teamcode.internal.Robot.LiftPosition.MAX;
 
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
+import com.qualcomm.robotcore.hardware.DistanceSensor;
 
 public abstract class BlueSouth extends BlueOpMode {
     @Override
@@ -20,9 +22,9 @@ public abstract class BlueSouth extends BlueOpMode {
         robot.drive(-1,0,45,8);
         robot.drive(-1,0,90, 30);
         robot.lift(CAROUSEL);
-        robot.drive(1,0, 180,12.75); //decreased inches from 13 to 12.75
+        double distance = robot.distanceSensor.getDistance(INCH) - 9.8;
+        robot.drive(1, 0, 180, Math.min(distance,14));
         robot.drive(0,0,180,0);
         robot.intake(REVERSECAROUSEL,5000);
-
     }
 }
