@@ -19,9 +19,6 @@ public class TeleOpMode extends OpMode {
     public TeleOpMode() {
         super(true);
     }
-    protected Alliance getAlliance() {
-        return UNKNOWN;
-    }
 
     @Override
     protected void execute() {
@@ -38,10 +35,6 @@ public class TeleOpMode extends OpMode {
             for (RobotController controller : robotControllers) {
                 controller.execute();
             }
-
-            robot.addTelemetry();
-
-            telemetry.update();
         }
     }
 }
