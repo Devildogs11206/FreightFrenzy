@@ -2,6 +2,7 @@ package org.firstinspires.ftc.teamcode.controllers;
 
 import static com.qualcomm.hardware.rev.RevBlinkinLedDriver.BlinkinPattern.BLACK;
 import static com.qualcomm.hardware.rev.RevBlinkinLedDriver.BlinkinPattern.GREEN;
+import static com.qualcomm.hardware.rev.RevBlinkinLedDriver.BlinkinPattern.ORANGE;
 import static com.qualcomm.hardware.rev.RevBlinkinLedDriver.BlinkinPattern.YELLOW;
 
 import static org.firstinspires.ftc.robotcore.external.navigation.DistanceUnit.INCH;
@@ -14,7 +15,7 @@ public class LightsController extends RobotController {
     }
 
     public void execute() {
-        if (robot.distanceSensor.getDistance(INCH) <= 1.3) robot.setLights(GREEN);
+        if (robot.distanceSensor.getDistance(INCH) <= 1.3) robot.setLights(ORANGE);
         else robot.setLights(BLACK);
     }
 }
