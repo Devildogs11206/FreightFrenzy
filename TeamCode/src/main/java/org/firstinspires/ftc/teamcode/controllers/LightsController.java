@@ -3,7 +3,6 @@ package org.firstinspires.ftc.teamcode.controllers;
 import static com.qualcomm.hardware.rev.RevBlinkinLedDriver.BlinkinPattern.BLACK;
 import static com.qualcomm.hardware.rev.RevBlinkinLedDriver.BlinkinPattern.GREEN;
 import static com.qualcomm.hardware.rev.RevBlinkinLedDriver.BlinkinPattern.RED;
-import static com.qualcomm.hardware.rev.RevBlinkinLedDriver.BlinkinPattern.YELLOW;
 
 import static org.firstinspires.ftc.robotcore.external.navigation.DistanceUnit.INCH;
 
