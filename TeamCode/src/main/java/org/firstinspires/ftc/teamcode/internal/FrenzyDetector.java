@@ -16,8 +16,8 @@ public class FrenzyDetector implements Runnable {
 
     private boolean isRunning = true;
 
-    private String modelFileName = "ffrn.tflite";
-    private String labelFileName = "ffrn.txt";
+    private String modelFileName = "ffbn.tflite";
+    private String labelFileName = "ffbn.txt";
     private static Classifier.Model MODEl_TYPE = Classifier.Model.FLOAT_EFFICIENTNET;
     private static final String LABEL_LEFT = "Left";
     private static final String LABEL_MIDDLE = "Middle";
