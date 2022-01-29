@@ -43,6 +43,8 @@ public abstract class OpMode extends LinearOpMode {
         return isStopRequested() || gamepad1.back || gamepad2.back;
     }
 
+    public String getDetectorFileName() { return null; }
+
     protected abstract void execute();
 
     protected Alliance getAlliance() {

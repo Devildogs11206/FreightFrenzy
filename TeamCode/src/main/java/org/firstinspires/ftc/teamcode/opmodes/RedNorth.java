@@ -11,6 +11,11 @@ import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 
 public class RedNorth extends RedOpMode {
     @Override
+    public String getDetectorFileName() {
+        return "ffrn";
+    }
+
+    @Override
     protected void execute() {
         robot.drivePower = 0.5;
         robot.lift(HIGHGOAL);

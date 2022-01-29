@@ -43,7 +43,7 @@ public class Robot {
     private static RevBlinkinLedDriver.BlinkinPattern PICKUP_COLOR = GREEN;
     private static RevBlinkinLedDriver.BlinkinPattern TARGET_COLOR = YELLOW;
 
-    private final OpMode opMode;
+    protected final OpMode opMode;
 
     private BNO055IMU imu;
 
@@ -75,6 +75,7 @@ public class Robot {
     public Position position = new Position(DistanceUnit.INCH, 0, 0, 0, 0);
     public Orientation orientation = new Orientation();
 
+    private DetectorThread detectorThread;
     private TelemetryThread telemetryThread;
 
     public String error;
@@ -145,8 +146,8 @@ public class Robot {
 
         distanceSensor = hardwareMap.get(DistanceSensor.class, "distanceSensor");
 
-        telemetryThread = new TelemetryThread(opMode,this);
-        telemetryThread.start();
+        detectorThread = new DetectorThread(this);
+        telemetryThread = new TelemetryThread(this);
     }
 
     public void calibrate() {
@@ -220,20 +221,6 @@ public class Robot {
                 Math.abs(driveRightRear.getCurrentPosition())
             ) / 4;
         }
-    }
-
-    public void driveTest() {
-        driveLeftFront.setPower(drivePower);
-        driveRightFront.setPower(drivePower);
-        driveLeftRear.setPower(drivePower);
-        driveRightRear.setPower(drivePower);
-
-        opMode.sleep(10000);
-
-        driveLeftFront.setPower(0);
-        driveRightFront.setPower(0);
-        driveLeftRear.setPower(0);
-        driveRightRear.setPower(0);
     }
 
     public void turn(double power, double heading) {
@@ -335,6 +322,8 @@ public class Robot {
         Telemetry telemetry = opMode.telemetry;
 
         telemetry.addData("Time","%.2fs", opMode.time);
+
+        telemetry.addData("Detector", detectorThread.zone);
 
         telemetry.addData("Drive", "%.2f Pow", opMode.gamepad1.left_stick_y);
         telemetry.addData("Turn", "%.2f Pow", opMode.gamepad1.right_stick_x);
