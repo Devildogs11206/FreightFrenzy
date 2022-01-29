@@ -23,7 +23,9 @@ public abstract class BlueSouth extends BlueOpMode {
         robot.drive(-1,0,90, 30);
         robot.lift(CAROUSEL);
         double distance = robot.distanceSensor.getDistance(INCH) - 9.8;
-        robot.drive(1, 0, 180, Math.min(distance,14));
+        distance = Math.min(distance,14);
+        distance = Math.max(distance,8);
+        robot.drive(1, 0, 180,distance);
         robot.drive(0,0,180,0);
         robot.intake(REVERSECAROUSEL,5000);
     }
