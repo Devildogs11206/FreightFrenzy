@@ -1,20 +1,15 @@
 package org.firstinspires.ftc.teamcode.internal;
 
-import org.firstinspires.ftc.teamcode.opmodes.OpMode;
-
-public class TelemetryThread extends Thread {
-    private OpMode opMode;
-    private Robot robot;
-
-    public TelemetryThread(OpMode opMode, Robot robot) {
-        this.opMode = opMode;
-        this.robot = robot;
+public class TelemetryThread extends RobotThread {
+    public TelemetryThread(Robot robot) {
+        super(robot);
     }
 
-    @Override public void run() {
-        while (!opMode.isStopping()) {
+    @Override
+    public void execute() {
+        while (!robot.opMode.isStopping()) {
             robot.addTelemetry();
-            opMode.telemetry.update();
+            robot.opMode.telemetry.update();
         }
     }
 }
