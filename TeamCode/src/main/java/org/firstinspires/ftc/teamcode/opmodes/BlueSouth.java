@@ -4,14 +4,14 @@ import static org.firstinspires.ftc.robotcore.external.navigation.DistanceUnit.I
 import static org.firstinspires.ftc.teamcode.internal.Robot.IntakeMode.OUT;
 import static org.firstinspires.ftc.teamcode.internal.Robot.IntakeMode.REVERSECAROUSEL;
 import static org.firstinspires.ftc.teamcode.internal.Robot.LiftPosition.CAROUSEL;
-import static org.firstinspires.ftc.teamcode.internal.Robot.LiftPosition.FORWARD;
 import static org.firstinspires.ftc.teamcode.internal.Robot.LiftPosition.HIGHGOAL;
-import static org.firstinspires.ftc.teamcode.internal.Robot.LiftPosition.MAX;
-
-import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
-import com.qualcomm.robotcore.hardware.DistanceSensor;
 
 public abstract class BlueSouth extends BlueOpMode {
+    @Override
+    public String getDetectorFileName() {
+        return "ffbs";
+    }
+
     @Override
     protected void execute() {
         robot.drivePower = .5;
@@ -23,8 +23,8 @@ public abstract class BlueSouth extends BlueOpMode {
         robot.drive(-1,0,90, 30);
         robot.lift(CAROUSEL);
         double distance = robot.distanceSensor.getDistance(INCH) - 9.8;
-        distance = Math.min(distance,14);
-        distance = Math.max(distance,8);
+        distance = Math.min(distance, 14);
+        distance = Math.max(distance, 8);
         robot.drive(1, 0, 180,distance);
         robot.drive(0,0,180,0);
         robot.intake(REVERSECAROUSEL,5000);

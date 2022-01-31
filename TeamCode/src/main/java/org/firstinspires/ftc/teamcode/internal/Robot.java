@@ -13,13 +13,12 @@ import org.firstinspires.ftc.robotcore.external.navigation.DistanceUnit;
 import org.firstinspires.ftc.robotcore.external.navigation.Orientation;
 import org.firstinspires.ftc.robotcore.external.navigation.Position;
 import org.firstinspires.ftc.teamcode.opmodes.OpMode;
+import org.firstinspires.ftc.teamcode.tfrec.classification.Classifier;
 
 import static com.qualcomm.hardware.rev.RevBlinkinLedDriver.BlinkinPattern.BLACK;
 import static com.qualcomm.hardware.rev.RevBlinkinLedDriver.BlinkinPattern.GRAY;
 import static com.qualcomm.hardware.rev.RevBlinkinLedDriver.BlinkinPattern.GREEN;
 import static com.qualcomm.hardware.rev.RevBlinkinLedDriver.BlinkinPattern.HEARTBEAT_GRAY;
-import static com.qualcomm.hardware.rev.RevBlinkinLedDriver.BlinkinPattern.LIGHT_CHASE_GRAY;
-import static com.qualcomm.hardware.rev.RevBlinkinLedDriver.BlinkinPattern.RAINBOW_LAVA_PALETTE;
 import static com.qualcomm.hardware.rev.RevBlinkinLedDriver.BlinkinPattern.YELLOW;
 import static com.qualcomm.robotcore.hardware.DcMotor.RunMode.RUN_TO_POSITION;
 import static com.qualcomm.robotcore.hardware.DcMotor.RunMode.RUN_USING_ENCODER;
@@ -32,6 +31,9 @@ import static org.firstinspires.ftc.robotcore.external.navigation.AngleUnit.DEGR
 import static org.firstinspires.ftc.robotcore.external.navigation.AxesOrder.ZYX;
 import static org.firstinspires.ftc.robotcore.external.navigation.AxesReference.INTRINSIC;
 import static org.firstinspires.ftc.teamcode.internal.Robot.RobotDriveType.MECANUM;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class Robot {
     public double drivePower = 1;
@@ -75,8 +77,7 @@ public class Robot {
     public Position position = new Position(DistanceUnit.INCH, 0, 0, 0, 0);
     public Orientation orientation = new Orientation();
 
-    private DetectorThread detectorThread;
-    private TelemetryThread telemetryThread;
+    public List<Classifier.Recognition> recognitions = new ArrayList<>();
 
     public String error;
 
@@ -146,8 +147,8 @@ public class Robot {
 
         distanceSensor = hardwareMap.get(DistanceSensor.class, "distanceSensor");
 
-        detectorThread = new DetectorThread(this);
-        telemetryThread = new TelemetryThread(this);
+        new DetectorThread(this).start();
+        new TelemetryThread(this).start();
     }
 
     public void calibrate() {
@@ -323,7 +324,8 @@ public class Robot {
 
         telemetry.addData("Time","%.2fs", opMode.time);
 
-        telemetry.addData("Detector", detectorThread.zone);
+        telemetry.addData("Detector File Name", opMode.getDetectorFileName());
+        telemetry.addData("Detector Recognition", "%s (%.2f)", recognitions.isEmpty() ? "None" : recognitions.get(0).getTitle(), recognitions.isEmpty() ? 0 : recognitions.get(0).getConfidence());
 
         telemetry.addData("Drive", "%.2f Pow", opMode.gamepad1.left_stick_y);
         telemetry.addData("Turn", "%.2f Pow", opMode.gamepad1.right_stick_x);
@@ -337,7 +339,7 @@ public class Robot {
         telemetry.addData("Lift Limit Left Front", liftLimitLeftFront.getState());
         telemetry.addData("Lift Limit Right Front", liftLimitRightFront.getState());
         telemetry.addData("Element Lift","%.2f Pos",elementLift.getPosition());
-        telemetry.addData("Distance Sensor", "%.01f in", distanceSensor.getDistance(DistanceUnit.INCH));
+        telemetry.addData("Distance Sensor", "%.2f in", distanceSensor.getDistance(DistanceUnit.INCH));
 
         telemetry.addLine();
 

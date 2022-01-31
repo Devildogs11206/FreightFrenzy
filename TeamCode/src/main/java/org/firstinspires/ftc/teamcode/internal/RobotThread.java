@@ -8,11 +8,8 @@ public abstract class RobotThread extends Thread {
 
         try {
             init();
-            start();
         } catch (Exception e) {
             robot.error = e.toString();
-            //robot.addTelemetry();
-            //robot.opMode.telemetry.update();
         }
     }
 
@@ -22,8 +19,6 @@ public abstract class RobotThread extends Thread {
             execute();
         } catch (Exception e) {
             robot.error = e.toString();
-            //robot.addTelemetry();
-            //robot.opMode.telemetry.update();
         }
     }
 

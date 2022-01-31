@@ -3,12 +3,11 @@ package org.firstinspires.ftc.teamcode.internal;
 import org.firstinspires.ftc.teamcode.tfrec.Detector;
 import org.firstinspires.ftc.teamcode.tfrec.classification.Classifier;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class DetectorThread extends RobotThread {
     private Detector detector;
-
-    public String zone;
 
     public DetectorThread(Robot robot) {
         super(robot);
@@ -31,18 +30,11 @@ public class DetectorThread extends RobotThread {
     }
 
     @Override
-    public void execute() {
+    protected void execute() throws Exception {
         while (!robot.opMode.isStopping()) {
             List<Classifier.Recognition> results = detector.getLastResults();
-
-            if (results == null)
-                return;
-
-            for (Classifier.Recognition r : results) {
-                if (r.getConfidence() >= 0.8) {
-                    zone = r.getTitle();
-                }
-            }
+            if (results == null || results.isEmpty()) continue;
+            robot.recognitions = results;
         }
 
         detector.stopProcessing();

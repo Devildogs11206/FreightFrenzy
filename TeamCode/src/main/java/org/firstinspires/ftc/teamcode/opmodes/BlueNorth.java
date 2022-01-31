@@ -9,6 +9,11 @@ import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 
 public abstract class BlueNorth extends BlueOpMode {
     @Override
+    public String getDetectorFileName() {
+        return "ffbn";
+    }
+
+    @Override
     protected void execute() {
         robot.drivePower = 0.5;
         robot.lift(HIGHGOAL);

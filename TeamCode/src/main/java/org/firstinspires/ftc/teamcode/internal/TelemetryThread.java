@@ -6,7 +6,7 @@ public class TelemetryThread extends RobotThread {
     }
 
     @Override
-    public void execute() {
+    protected void execute() throws Exception {
         while (!robot.opMode.isStopping()) {
             robot.addTelemetry();
             robot.opMode.telemetry.update();

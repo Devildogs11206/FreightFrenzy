@@ -6,7 +6,7 @@ import static org.firstinspires.ftc.teamcode.internal.Robot.LiftPosition.HIGHGOA
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 
 @Autonomous
-public class Calibrate extends BlueOpMode {
+public class Calibrate extends OpMode {
     @Override
     protected void execute() {
        robot.lift(HIGHGOAL);
