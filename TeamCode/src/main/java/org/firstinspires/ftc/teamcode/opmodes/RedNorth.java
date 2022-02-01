@@ -5,7 +5,9 @@ import static org.firstinspires.ftc.teamcode.internal.Robot.IntakeMode.REVERSECA
 import static org.firstinspires.ftc.teamcode.internal.Robot.LiftPosition.CAROUSEL;
 import static org.firstinspires.ftc.teamcode.internal.Robot.LiftPosition.FORWARD;
 import static org.firstinspires.ftc.teamcode.internal.Robot.LiftPosition.HIGHGOAL;
+import static org.firstinspires.ftc.teamcode.internal.Robot.LiftPosition.LOWGOAL;
 import static org.firstinspires.ftc.teamcode.internal.Robot.LiftPosition.MAX;
+import static org.firstinspires.ftc.teamcode.internal.Robot.LiftPosition.MIDGOAL;
 
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 
@@ -18,7 +20,7 @@ public class RedNorth extends RedOpMode {
     @Override
     protected void execute() {
         robot.drivePower = 0.5;
-        robot.lift(HIGHGOAL);
+        robot.detectAndLift();
         robot.drive(1,0,0, 24);
         robot.drive(1,0,45,8);
         robot.intake(OUT,500);

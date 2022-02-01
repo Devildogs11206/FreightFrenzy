@@ -15,7 +15,7 @@ public abstract class BlueSouth extends BlueOpMode {
     @Override
     protected void execute() {
         robot.drivePower = .5;
-        robot.lift(HIGHGOAL);
+        robot.detectAndLift();
         robot.drive(1,0,0, 24);
         robot.drive(1,0,45,8);
         robot.intake(OUT,500);

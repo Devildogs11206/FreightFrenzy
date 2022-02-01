@@ -30,6 +30,9 @@ import static com.qualcomm.robotcore.hardware.DigitalChannel.Mode.INPUT;
 import static org.firstinspires.ftc.robotcore.external.navigation.AngleUnit.DEGREES;
 import static org.firstinspires.ftc.robotcore.external.navigation.AxesOrder.ZYX;
 import static org.firstinspires.ftc.robotcore.external.navigation.AxesReference.INTRINSIC;
+import static org.firstinspires.ftc.teamcode.internal.Robot.LiftPosition.HIGHGOAL;
+import static org.firstinspires.ftc.teamcode.internal.Robot.LiftPosition.LOWGOAL;
+import static org.firstinspires.ftc.teamcode.internal.Robot.LiftPosition.MIDGOAL;
 import static org.firstinspires.ftc.teamcode.internal.Robot.RobotDriveType.MECANUM;
 
 import java.util.ArrayList;
@@ -270,7 +273,7 @@ public class Robot {
     }
 
     public enum LiftPosition {
-        FORWARD(0), LOWGOAL(-1102), MIDGOAL(-2250),HIGHGOAL(-3766), MAX(-3766), CAROUSEL(-2829); //changed CAROUSEL from -3000 to -3025
+        FORWARD(0), LOWGOAL(-1102), MIDGOAL(-2300),HIGHGOAL(-3766), MAX(-3766), CAROUSEL(-2829); //changed CAROUSEL from -3000 to -3025
 
         public int position;
 
@@ -283,6 +286,12 @@ public class Robot {
         lift.setTargetPosition(position.position);
         lift.setMode(RUN_TO_POSITION);
         lift.setPower(LiftMode.FORWARD.power);
+    }
+
+    public void detectAndLift() {
+        if (!recognitions.isEmpty() && recognitions.get(0).getTitle().equals("0 Left")) lift(LOWGOAL);
+        else if (!recognitions.isEmpty() && recognitions.get(0).getTitle().equals("1 Middle")) lift(MIDGOAL);
+        else  lift(HIGHGOAL);
     }
 
     public enum IntakeMode {
