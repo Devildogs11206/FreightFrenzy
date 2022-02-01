@@ -280,7 +280,7 @@ public class Detector implements ImageReader.OnImageAvailableListener, Camera.Pr
                 previewHeight = previewSize.height;
                 previewWidth = previewSize.width;
                 rgbBytes = new int[previewWidth * previewHeight];
-                onPreviewSizeChosen(new Size(previewSize.width, previewSize.height), 90);
+                onPreviewSizeChosen(new Size(previewSize.width, previewSize.height), 0);
             }
         } catch (final Exception e) {
             Log.e(TAG, "onPreviewFrame. Error", e);
