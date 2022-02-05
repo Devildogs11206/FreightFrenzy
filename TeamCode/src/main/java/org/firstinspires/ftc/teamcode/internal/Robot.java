@@ -264,7 +264,7 @@ public class Robot {
     }
 
     public enum LiftPosition {
-        FORWARD(0), LOWGOAL(-1200), MIDGOAL(-2300),HIGHGOAL(-3866), MAX(-10886), CAROUSEL(-2829); //changed CAROUSEL from -3000 to -3025
+        FORWARD(0), LOWGOAL(-1250), MIDGOAL(-2375),HIGHGOAL(-3866), MAX(-10886), CAROUSEL(-2829); //changed CAROUSEL from -3000 to -3025
 
         public int position;
 
@@ -282,7 +282,7 @@ public class Robot {
     public void detectAndLift() {
         if (!recognitions.isEmpty() && recognitions.get(0).getTitle().equals("0 Left")) lift(LOWGOAL);
         else if (!recognitions.isEmpty() && recognitions.get(0).getTitle().equals("1 Middle")) lift(MIDGOAL);
-        else  lift(HIGHGOAL);
+        else lift(HIGHGOAL);
     }
 
     public enum IntakeMode {
@@ -323,9 +323,6 @@ public class Robot {
         Telemetry telemetry = opMode.telemetry;
 
         telemetry.addData("Time","%.2fs", opMode.time);
-
-        if (autonomousDelay > 0)
-            telemetry.addData("Autonomous Delay", "%ds", autonomousDelay);
 
         if (!recognitions.isEmpty()) {
             Classifier.Recognition recognition = recognitions.get(0);
