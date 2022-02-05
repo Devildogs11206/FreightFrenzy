@@ -43,7 +43,7 @@ public class Robot {
     private static final double INCHES_PER_ROTATION = 3.95 * Math.PI;
     private static final double TICKS_PER_INCH = 537.6 / INCHES_PER_ROTATION;
 
-    private static RevBlinkinLedDriver.BlinkinPattern DEFAULT_COLOR = GRAY;
+    private static RevBlinkinLedDriver.BlinkinPattern DEFAULT_COLOR = BLACK;
     private static RevBlinkinLedDriver.BlinkinPattern READY_COLOR = HEARTBEAT_GRAY;
     private static RevBlinkinLedDriver.BlinkinPattern PICKUP_COLOR = GREEN;
     private static RevBlinkinLedDriver.BlinkinPattern TARGET_COLOR = YELLOW;
@@ -273,7 +273,7 @@ public class Robot {
     }
 
     public enum LiftPosition {
-        FORWARD(0), LOWGOAL(-1200), MIDGOAL(-2300),HIGHGOAL(-3866), MAX(-10886), CAROUSEL(-2829); //changed CAROUSEL from -3000 to -3025
+        FORWARD(0), LOWGOAL(-1250), MIDGOAL(-2375),HIGHGOAL(-3866), MAX(-10886), CAROUSEL(-2829); //changed CAROUSEL from -3000 to -3025
 
         public int position;
 
@@ -291,7 +291,7 @@ public class Robot {
     public void detectAndLift() {
         if (!recognitions.isEmpty() && recognitions.get(0).getTitle().equals("0 Left")) lift(LOWGOAL);
         else if (!recognitions.isEmpty() && recognitions.get(0).getTitle().equals("1 Middle")) lift(MIDGOAL);
-        else  lift(HIGHGOAL);
+        else lift(HIGHGOAL);
     }
 
     public enum IntakeMode {

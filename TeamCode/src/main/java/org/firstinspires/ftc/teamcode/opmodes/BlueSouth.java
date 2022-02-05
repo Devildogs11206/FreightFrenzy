@@ -1,10 +1,11 @@
 package org.firstinspires.ftc.teamcode.opmodes;
 
+import static com.qualcomm.hardware.rev.RevBlinkinLedDriver.BlinkinPattern.BLACK;
+import static com.qualcomm.hardware.rev.RevBlinkinLedDriver.BlinkinPattern.GREEN;
 import static org.firstinspires.ftc.robotcore.external.navigation.DistanceUnit.INCH;
 import static org.firstinspires.ftc.teamcode.internal.Robot.IntakeMode.OUT;
 import static org.firstinspires.ftc.teamcode.internal.Robot.IntakeMode.REVERSECAROUSEL;
 import static org.firstinspires.ftc.teamcode.internal.Robot.LiftPosition.CAROUSEL;
-import static org.firstinspires.ftc.teamcode.internal.Robot.LiftPosition.HIGHGOAL;
 
 public abstract class BlueSouth extends BlueOpMode {
     @Override
