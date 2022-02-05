@@ -1,15 +1,6 @@
 package org.firstinspires.ftc.teamcode.opmodes;
 
 import static org.firstinspires.ftc.teamcode.internal.Robot.IntakeMode.OUT;
-import static org.firstinspires.ftc.teamcode.internal.Robot.IntakeMode.REVERSECAROUSEL;
-import static org.firstinspires.ftc.teamcode.internal.Robot.LiftPosition.CAROUSEL;
-import static org.firstinspires.ftc.teamcode.internal.Robot.LiftPosition.FORWARD;
-import static org.firstinspires.ftc.teamcode.internal.Robot.LiftPosition.HIGHGOAL;
-import static org.firstinspires.ftc.teamcode.internal.Robot.LiftPosition.LOWGOAL;
-import static org.firstinspires.ftc.teamcode.internal.Robot.LiftPosition.MAX;
-import static org.firstinspires.ftc.teamcode.internal.Robot.LiftPosition.MIDGOAL;
-
-import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 
 public class RedNorth extends RedOpMode {
     @Override

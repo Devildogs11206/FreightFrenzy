@@ -31,6 +31,8 @@ public class DetectorThread extends RobotThread {
 
     @Override
     protected void execute() throws Exception {
+        if (detector == null) return;
+
         while (!robot.opMode.isStopping()) {
             List<Classifier.Recognition> results = detector.getLastResults();
             if (results == null || results.isEmpty()) continue;

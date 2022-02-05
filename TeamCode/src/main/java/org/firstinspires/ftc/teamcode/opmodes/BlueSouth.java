@@ -4,7 +4,6 @@ import static org.firstinspires.ftc.robotcore.external.navigation.DistanceUnit.I
 import static org.firstinspires.ftc.teamcode.internal.Robot.IntakeMode.OUT;
 import static org.firstinspires.ftc.teamcode.internal.Robot.IntakeMode.REVERSECAROUSEL;
 import static org.firstinspires.ftc.teamcode.internal.Robot.LiftPosition.CAROUSEL;
-import static org.firstinspires.ftc.teamcode.internal.Robot.LiftPosition.HIGHGOAL;
 
 public abstract class BlueSouth extends BlueOpMode {
     @Override
@@ -25,8 +24,8 @@ public abstract class BlueSouth extends BlueOpMode {
         double distance = robot.distanceSensor.getDistance(INCH) - 9.8;
         distance = Math.min(distance, 14);
         distance = Math.max(distance, 8);
-        robot.drive(1, 0, 180,distance);
+        robot.drive(1, 0, 180, distance);
         robot.drive(0,0,180,0);
-        robot.intake(REVERSECAROUSEL,5000);
+        robot.intake(REVERSECAROUSEL, 5000);
     }
 }

@@ -15,11 +15,6 @@ import org.firstinspires.ftc.robotcore.external.navigation.Position;
 import org.firstinspires.ftc.teamcode.opmodes.OpMode;
 import org.firstinspires.ftc.teamcode.tfrec.classification.Classifier;
 
-import static com.qualcomm.hardware.rev.RevBlinkinLedDriver.BlinkinPattern.BLACK;
-import static com.qualcomm.hardware.rev.RevBlinkinLedDriver.BlinkinPattern.GRAY;
-import static com.qualcomm.hardware.rev.RevBlinkinLedDriver.BlinkinPattern.GREEN;
-import static com.qualcomm.hardware.rev.RevBlinkinLedDriver.BlinkinPattern.HEARTBEAT_GRAY;
-import static com.qualcomm.hardware.rev.RevBlinkinLedDriver.BlinkinPattern.YELLOW;
 import static com.qualcomm.robotcore.hardware.DcMotor.RunMode.RUN_TO_POSITION;
 import static com.qualcomm.robotcore.hardware.DcMotor.RunMode.RUN_USING_ENCODER;
 import static com.qualcomm.robotcore.hardware.DcMotor.RunMode.STOP_AND_RESET_ENCODER;
@@ -43,11 +38,6 @@ public class Robot {
     private static final double INCHES_PER_ROTATION = 3.95 * Math.PI;
     private static final double TICKS_PER_INCH = 537.6 / INCHES_PER_ROTATION;
 
-    private static RevBlinkinLedDriver.BlinkinPattern DEFAULT_COLOR = GRAY;
-    private static RevBlinkinLedDriver.BlinkinPattern READY_COLOR = HEARTBEAT_GRAY;
-    private static RevBlinkinLedDriver.BlinkinPattern PICKUP_COLOR = GREEN;
-    private static RevBlinkinLedDriver.BlinkinPattern TARGET_COLOR = YELLOW;
-
     protected final OpMode opMode;
 
     private BNO055IMU imu;
@@ -64,6 +54,7 @@ public class Robot {
     private DcMotor driveRightRear;
 
     private RevBlinkinLedDriver lights;
+    public RevBlinkinLedDriver.BlinkinPattern lightsPattern;
 
     private DcMotor lift;
 
@@ -244,7 +235,7 @@ public class Robot {
     }
 
     public void setLights(RevBlinkinLedDriver.BlinkinPattern pattern) {
-        lights.setPattern(pattern == BLACK ? DEFAULT_COLOR : pattern);
+        lights.setPattern(this.lightsPattern = pattern);
     }
 
     public enum LiftMode {
@@ -333,20 +324,26 @@ public class Robot {
 
         telemetry.addData("Time","%.2fs", opMode.time);
 
-        telemetry.addData("Detector File Name", opMode.getDetectorFileName());
-        telemetry.addData("Detector Recognition", "%s (%.2f)", recognitions.isEmpty() ? "None" : recognitions.get(0).getTitle(), recognitions.isEmpty() ? 0 : recognitions.get(0).getConfidence());
+        if (autonomousDelay > 0)
+            telemetry.addData("Autonomous Delay", "%ds", autonomousDelay);
 
-        telemetry.addData("Drive", "%.2f Pow", opMode.gamepad1.left_stick_y);
-        telemetry.addData("Turn", "%.2f Pow", opMode.gamepad1.right_stick_x);
+        if (!recognitions.isEmpty()) {
+            Classifier.Recognition recognition = recognitions.get(0);
+            telemetry.addData("Detector (%s)", "%s (%.2f)", opMode.getDetectorFileName(), recognition.getTitle(), recognition.getConfidence());
+        }
+
+        telemetry.addData("Lights", "%s", this.lightsPattern);
+
+        telemetry.addData("Drive, Turn", "%.2f Pow, %.2f Pow", opMode.gamepad1.left_stick_y, opMode.gamepad1.right_stick_x);
         telemetry.addData("Drive (LF)", "%.2f Pow, %d Pos", driveLeftFront.getPower(), driveLeftFront.getCurrentPosition());
         telemetry.addData("Drive (RF)", "%.2f Pow, %d Pos", driveRightFront.getPower(), driveRightFront.getCurrentPosition());
         telemetry.addData("Drive (LR)", "%.2f Pow, %d Pos", driveLeftRear.getPower(), driveLeftRear.getCurrentPosition());
         telemetry.addData("Drive (RR)", "%.2f Pow, %d Pos", driveRightRear.getPower(), driveRightRear.getCurrentPosition());
 
         telemetry.addData("Lift", "%.2f Pow, %d Pos", lift.getPower(), lift.getCurrentPosition());
-        telemetry.addData("Intake", "%.2f Pow, %d Pos", intake.getPower(), intake.getCurrentPosition());
         telemetry.addData("Lift Limit Left Front", liftLimitLeftFront.getState());
         telemetry.addData("Lift Limit Right Front", liftLimitRightFront.getState());
+        telemetry.addData("Intake", "%.2f Pow, %d Pos", intake.getPower(), intake.getCurrentPosition());
         telemetry.addData("Element Lift","%.2f Pos",elementLift.getPosition());
         telemetry.addData("Distance Sensor", "%.2f in", distanceSensor.getDistance(DistanceUnit.INCH));
 

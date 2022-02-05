@@ -1,11 +1,6 @@
 package org.firstinspires.ftc.teamcode.opmodes;
 
 import static org.firstinspires.ftc.teamcode.internal.Robot.IntakeMode.OUT;
-import static org.firstinspires.ftc.teamcode.internal.Robot.LiftPosition.FORWARD;
-import static org.firstinspires.ftc.teamcode.internal.Robot.LiftPosition.HIGHGOAL;
-import static org.firstinspires.ftc.teamcode.internal.Robot.LiftPosition.MAX;
-
-import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 
 public abstract class BlueNorth extends BlueOpMode {
     @Override

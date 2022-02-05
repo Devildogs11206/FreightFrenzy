@@ -4,7 +4,6 @@ import static org.firstinspires.ftc.robotcore.external.navigation.DistanceUnit.I
 import static org.firstinspires.ftc.teamcode.internal.Robot.IntakeMode.OUT;
 import static org.firstinspires.ftc.teamcode.internal.Robot.IntakeMode.REVERSECAROUSEL;
 import static org.firstinspires.ftc.teamcode.internal.Robot.LiftPosition.CAROUSEL;
-import static org.firstinspires.ftc.teamcode.internal.Robot.LiftPosition.HIGHGOAL;
 
 public abstract class RedSouth extends RedOpMode {
     @Override
