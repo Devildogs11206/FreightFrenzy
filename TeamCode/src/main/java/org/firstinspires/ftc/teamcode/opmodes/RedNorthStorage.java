@@ -9,7 +9,8 @@ public class RedNorthStorage extends RedNorth {
     @Override
     protected void execute() {
         super.execute();
-        robot.drive(-1,0,-90,84);
         robot.lift(FORWARD);
+        robot.drive(1,0,90,60);
+        robot.drive(0,1,90,12);
     }
 }

@@ -9,10 +9,10 @@ public class RedNorthWarehouse extends RedNorth {
     @Override
     protected void execute() {
         super.execute();
-        robot.drive(0,-1,90,35);
-        robot.drive(-1,0,90,33);
-        robot.drive(0,1,90,34);
-        robot.drive(-1,0,90,29);
+        robot.drive( 0,-1,+90,20);
+        robot.drive(-1, 0,+90,39);
+        robot.drive( 0,+1,+90,30);
+        robot.drive(-1, 0,+90,24);
         robot.lift(FORWARD);
     }
 }

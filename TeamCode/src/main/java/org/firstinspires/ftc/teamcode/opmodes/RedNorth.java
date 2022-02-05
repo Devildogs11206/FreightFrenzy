@@ -11,10 +11,9 @@ public class RedNorth extends RedOpMode {
     @Override
     protected void execute() {
         robot.drivePower = 0.5;
-        robot.detectLiftAndGetOffset();
-        robot.drive(1,0,0, 24);
-        robot.drive(1,0,45,8);
+        double offset = robot.detectLiftAndGetOffset();
+        robot.drive(1,0,24.1, 24 + offset);
         robot.intake(OUT,500);
-        robot.drive(-1,0,45,4);
+        robot.drive(-1,0,24.1,offset + 6);
     }
 }
