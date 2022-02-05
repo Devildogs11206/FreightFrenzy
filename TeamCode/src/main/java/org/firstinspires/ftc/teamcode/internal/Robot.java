@@ -73,6 +73,8 @@ public class Robot {
 
     public List<Classifier.Recognition> recognitions = new ArrayList<>();
 
+    public LiftPosition scoringLevel = HIGHGOAL;
+
     public String error;
 
     public Robot(OpMode opMode) {
@@ -279,10 +281,19 @@ public class Robot {
         lift.setPower(LiftMode.FORWARD.power);
     }
 
-    public void detectAndLift() {
-        if (!recognitions.isEmpty() && recognitions.get(0).getTitle().equals("0 Left")) lift(LOWGOAL);
-        else if (!recognitions.isEmpty() && recognitions.get(0).getTitle().equals("1 Middle")) lift(MIDGOAL);
-        else lift(HIGHGOAL);
+    public void detect() {
+        if (recognitions.isEmpty()) return;
+        String title = recognitions.get(0).getTitle();
+        if (title.equals("0 Left")) scoringLevel = LOWGOAL;
+        else if (title.equals("1 Middle")) scoringLevel = MIDGOAL;
+    }
+
+    public double detectLiftAndGetOffset() {
+        detect();
+        lift(scoringLevel);
+        if (scoringLevel == HIGHGOAL) return 3;
+        else if(scoringLevel == MIDGOAL) return 1.5;
+        return 0;
     }
 
     public enum IntakeMode {
@@ -324,10 +335,10 @@ public class Robot {
 
         telemetry.addData("Time","%.2fs", opMode.time);
 
-        if (!recognitions.isEmpty()) {
-            Classifier.Recognition recognition = recognitions.get(0);
-            telemetry.addData("Detector (%s)", "%s (%.2f)", opMode.getDetectorFileName(), recognition.getTitle(), recognition.getConfidence());
-        }
+        telemetry.addData(
+            String.format("Detector (%s)", opMode.getDetectorFileName()),
+            recognitions.isEmpty() ? "None" : String.format("%s (%.2f)", recognitions.get(0).getTitle(), recognitions.get(0).getConfidence())
+        );
 
         telemetry.addData("Lights", "%s", this.lightsPattern);
 

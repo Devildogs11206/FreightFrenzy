@@ -1,8 +1,5 @@
 package org.firstinspires.ftc.teamcode.opmodes;
 
-import static com.qualcomm.hardware.rev.RevBlinkinLedDriver.BlinkinPattern.BLACK;
-import static com.qualcomm.hardware.rev.RevBlinkinLedDriver.BlinkinPattern.GREEN;
-import static org.firstinspires.ftc.robotcore.external.navigation.DistanceUnit.INCH;
 import static org.firstinspires.ftc.teamcode.internal.Robot.IntakeMode.OUT;
 
 public abstract class BlueNorth extends BlueOpMode {
@@ -14,7 +11,7 @@ public abstract class BlueNorth extends BlueOpMode {
     @Override
     protected void execute() {
         robot.drivePower = 0.5;
-        robot.detectAndLift();
+        robot.detectLiftAndGetOffset();
         robot.drive(1,0,0, 24);
         robot.drive(1,0,-45,8);
         robot.intake(OUT,500);

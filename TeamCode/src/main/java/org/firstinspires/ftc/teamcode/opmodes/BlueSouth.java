@@ -1,7 +1,5 @@
 package org.firstinspires.ftc.teamcode.opmodes;
 
-import static com.qualcomm.hardware.rev.RevBlinkinLedDriver.BlinkinPattern.BLACK;
-import static com.qualcomm.hardware.rev.RevBlinkinLedDriver.BlinkinPattern.GREEN;
 import static org.firstinspires.ftc.robotcore.external.navigation.DistanceUnit.INCH;
 import static org.firstinspires.ftc.teamcode.internal.Robot.IntakeMode.OUT;
 import static org.firstinspires.ftc.teamcode.internal.Robot.IntakeMode.REVERSECAROUSEL;
@@ -16,16 +14,15 @@ public abstract class BlueSouth extends BlueOpMode {
     @Override
     protected void execute() {
         robot.drivePower = .5;
-        robot.detectAndLift();
-        robot.drive(1,0,0, 24);
-        robot.drive(1,0,45,8);
+        double offset = robot.detectLiftAndGetOffset();
+        robot.drive(1,0,24.1, 24 + offset);
         robot.intake(OUT,500);
-        robot.drive(-1,0,45,8);
-        robot.drive(-1,0,90, 30);
+        robot.drive(-1,0,24.1,offset + 6);
         robot.lift(CAROUSEL);
+        robot.drive(-1,0,90, 44);
         double distance = robot.distanceSensor.getDistance(INCH) - 9.8;
-        distance = Math.min(distance, 14);
-        distance = Math.max(distance, 8);
+        distance = Math.min(distance, 10);
+        distance = Math.max(distance, 6);
         robot.drive(1, 0, 180, distance);
         robot.drive(0,0,180,0);
         robot.intake(REVERSECAROUSEL, 5000);

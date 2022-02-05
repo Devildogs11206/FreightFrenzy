@@ -1,7 +1,5 @@
 package org.firstinspires.ftc.teamcode.opmodes;
 
-import static com.qualcomm.hardware.rev.RevBlinkinLedDriver.BlinkinPattern.BLACK;
-import static com.qualcomm.hardware.rev.RevBlinkinLedDriver.BlinkinPattern.GREEN;
 import static org.firstinspires.ftc.robotcore.external.navigation.DistanceUnit.INCH;
 import static org.firstinspires.ftc.teamcode.internal.Robot.IntakeMode.OUT;
 import static org.firstinspires.ftc.teamcode.internal.Robot.IntakeMode.REVERSECAROUSEL;
@@ -16,7 +14,7 @@ public abstract class RedSouth extends RedOpMode {
     @Override
     protected void execute() {
         robot.drivePower = .5;
-        robot.detectAndLift();
+        robot.detectLiftAndGetOffset();
         robot.drive(1,0,0, 24);
         robot.drive(1,0,-45,8);
         robot.intake(OUT,500);
