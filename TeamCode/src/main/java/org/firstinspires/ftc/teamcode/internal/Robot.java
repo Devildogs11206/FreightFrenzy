@@ -30,6 +30,8 @@ import static org.firstinspires.ftc.teamcode.internal.Robot.LiftPosition.LOWGOAL
 import static org.firstinspires.ftc.teamcode.internal.Robot.LiftPosition.MIDGOAL;
 import static org.firstinspires.ftc.teamcode.internal.Robot.RobotDriveType.MECANUM;
 
+import androidx.annotation.NonNull;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -41,6 +43,8 @@ public class Robot {
     protected final OpMode opMode;
 
     private BNO055IMU imu;
+
+    public int autonomousDelay = 0;
 
     public enum RobotDriveType {
         @SuppressWarnings("unused") STANDARD, MECANUM
@@ -145,6 +149,7 @@ public class Robot {
 
         new DetectorThread(this).start();
         new TelemetryThread(this).start();
+        new ConfigThread(this).start();
     }
 
     public void calibrate() {
@@ -283,7 +288,7 @@ public class Robot {
 
     public void detect() {
         if (recognitions.isEmpty()) return;
-        String title = recognitions.get(0).getTitle();
+        String title = recognitions.get(0).getTitle().trim();
         if (title.equals("0 Left")) scoringLevel = LOWGOAL;
         else if (title.equals("1 Middle")) scoringLevel = MIDGOAL;
     }
@@ -326,7 +331,7 @@ public class Robot {
         }
     }
 
-    public void elementLift(ElementLiftPosition position) {
+    public void elementLift(@NonNull ElementLiftPosition position) {
         elementLift.setPosition(position.position);
     }
 
@@ -335,10 +340,14 @@ public class Robot {
 
         telemetry.addData("Time","%.2fs", opMode.time);
 
+        telemetry.addData("Autonomous Delay","%ds", autonomousDelay);
+
         telemetry.addData(
             String.format("Detector (%s)", opMode.getDetectorFileName()),
             recognitions.isEmpty() ? "None" : String.format("%s (%.2f)", recognitions.get(0).getTitle(), recognitions.get(0).getConfidence())
         );
+
+        telemetry.addData("Scoring Level", scoringLevel);
 
         telemetry.addData("Lights", "%s", this.lightsPattern);
 

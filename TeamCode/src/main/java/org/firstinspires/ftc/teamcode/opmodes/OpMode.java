@@ -27,7 +27,7 @@ public abstract class OpMode extends LinearOpMode {
         if (calibrate) robot.calibrate();
         waitForStart();
         resetStartTime();
-        sleep(250);
+        sleep(Math.max(250, robot.autonomousDelay * 1000));
         robot.start();
         sleep(250);
         execute();
