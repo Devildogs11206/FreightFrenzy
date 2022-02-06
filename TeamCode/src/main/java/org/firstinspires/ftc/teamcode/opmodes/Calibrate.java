@@ -1,6 +1,5 @@
 package org.firstinspires.ftc.teamcode.opmodes;
 
-import static org.firstinspires.ftc.teamcode.internal.Robot.IntakeMode.OUT;
 import static org.firstinspires.ftc.teamcode.internal.Robot.LiftPosition.HIGHGOAL;
 
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
@@ -11,6 +10,6 @@ public class Calibrate extends OpMode {
     protected void execute() {
        robot.lift(HIGHGOAL);
        this.sleep(3000);
-       robot.start();
+       robot.calibrate();
     }
 }

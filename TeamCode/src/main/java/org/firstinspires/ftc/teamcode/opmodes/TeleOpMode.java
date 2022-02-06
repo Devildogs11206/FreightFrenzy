@@ -13,7 +13,7 @@ import org.firstinspires.ftc.teamcode.controllers.RobotController;
 @TeleOp
 public class TeleOpMode extends OpMode {
     public TeleOpMode() {
-        super(true);
+        super(false);
     }
 
     @Override

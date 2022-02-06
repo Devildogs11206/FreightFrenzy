@@ -15,6 +15,8 @@ import org.firstinspires.ftc.robotcore.external.navigation.Position;
 import org.firstinspires.ftc.teamcode.opmodes.OpMode;
 import org.firstinspires.ftc.teamcode.tfrec.classification.Classifier;
 
+import static com.qualcomm.hardware.rev.RevBlinkinLedDriver.BlinkinPattern.BLUE;
+import static com.qualcomm.hardware.rev.RevBlinkinLedDriver.BlinkinPattern.RED;
 import static com.qualcomm.robotcore.hardware.DcMotor.RunMode.RUN_TO_POSITION;
 import static com.qualcomm.robotcore.hardware.DcMotor.RunMode.RUN_USING_ENCODER;
 import static com.qualcomm.robotcore.hardware.DcMotor.RunMode.STOP_AND_RESET_ENCODER;
@@ -36,7 +38,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Robot {
-    public double drivePower = 1;
+    public double drivePower = 0.5;
     private static final double INCHES_PER_ROTATION = 3.95 * Math.PI;
     private static final double TICKS_PER_INCH = 537.6 / INCHES_PER_ROTATION;
 
@@ -98,8 +100,6 @@ public class Robot {
         imu = hardwareMap.get(BNO055IMU.class, "imu");
         imu.initialize(parameters);
 
-        drivePower = 0.5;
-
         driveLeftFront = hardwareMap.get(DcMotor.class, "driveLeftFront");
         driveLeftFront.setDirection(REVERSE);
         driveLeftFront.setZeroPowerBehavior(BRAKE);
@@ -153,10 +153,14 @@ public class Robot {
     }
 
     public void calibrate() {
+        error = "calibrate";
 
-    }
+        if (opMode.getAlliance() == Alliance.BLUE) setLights(BLUE);
+        else if (opMode.getAlliance() == Alliance.RED) setLights(RED);
 
-    public void start() {
+        lift(HIGHGOAL);
+        opMode.sleep(3000);
+
         lift(LiftMode.FORWARD);
 
         while (!this.isLiftAtFrontLimit())
@@ -341,6 +345,8 @@ public class Robot {
         telemetry.addData("Time","%.2fs", opMode.time);
 
         telemetry.addData("Autonomous Delay","%ds", autonomousDelay);
+
+        telemetry.addData("Drive Power", "%.2f", drivePower);
 
         telemetry.addData(
             String.format("Detector (%s)", opMode.getDetectorFileName()),

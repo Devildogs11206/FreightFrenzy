@@ -28,8 +28,6 @@ public abstract class OpMode extends LinearOpMode {
         waitForStart();
         resetStartTime();
         sleep(Math.max(250, robot.autonomousDelay * 1000));
-        robot.start();
-        sleep(250);
         execute();
     }
 
@@ -47,7 +45,7 @@ public abstract class OpMode extends LinearOpMode {
 
     protected abstract void execute();
 
-    protected Alliance getAlliance() {
+    public Alliance getAlliance() {
         return UNKNOWN;
     }
 

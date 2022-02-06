@@ -6,5 +6,5 @@ import org.firstinspires.ftc.teamcode.internal.Alliance;
 
 public abstract class RedOpMode extends OpMode {
     @Override
-    protected Alliance getAlliance() { return RED; }
+    public Alliance getAlliance() { return RED; }
 }

@@ -6,7 +6,7 @@ import org.firstinspires.ftc.teamcode.internal.Alliance;
 
 public abstract class BlueOpMode extends OpMode {
     @Override
-    protected Alliance getAlliance() {
+    public Alliance getAlliance() {
         return BLUE;
     }
 }
