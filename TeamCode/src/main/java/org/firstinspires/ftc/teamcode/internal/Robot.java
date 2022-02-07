@@ -32,8 +32,6 @@ import static org.firstinspires.ftc.teamcode.internal.Robot.LiftPosition.LOWGOAL
 import static org.firstinspires.ftc.teamcode.internal.Robot.LiftPosition.MIDGOAL;
 import static org.firstinspires.ftc.teamcode.internal.Robot.RobotDriveType.MECANUM;
 
-import androidx.annotation.NonNull;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -153,8 +151,6 @@ public class Robot {
     }
 
     public void calibrate() {
-        error = "calibrate";
-
         if (opMode.getAlliance() == Alliance.BLUE) setLights(BLUE);
         else if (opMode.getAlliance() == Alliance.RED) setLights(RED);
 
@@ -335,7 +331,7 @@ public class Robot {
         }
     }
 
-    public void elementLift(@NonNull ElementLiftPosition position) {
+    public void elementLift(ElementLiftPosition position) {
         elementLift.setPosition(position.position);
     }
 

@@ -13,18 +13,17 @@ public abstract class RedSouth extends RedOpMode {
 
     @Override
     protected void execute() {
-        robot.drivePower = .5;
         double offset = robot.detectLiftAndGetOffset();
-        robot.drive(1,0,-24.1, 23 + offset);
-        robot.intake(OUT,500);
-        robot.drive(-1,0,-24.1,offset + 5);
+        robot.drive(+1, 0, -24, 23 + offset);
+        robot.intake(OUT, 500);
+        robot.drive(-1, 0, -24, offset + 5);
         robot.lift(CAROUSEL);
-        robot.drive(-1,0,-90, 43);
+        robot.drive(-1, 0, -90, 43);
         double distance = robot.distanceSensor.getDistance(INCH) - 9.8;
         distance = Math.min(distance, 6);
         distance = Math.max(distance, 4);
-        robot.drive(1, 0, -180, distance);
-        robot.drive(0,0,-180,0);
-        robot.intake(REVERSECAROUSEL,5000);
+        robot.drive(+1, 0, -180, distance);
+        robot.drive( 0, 0, -180, 0);
+        robot.intake(REVERSECAROUSEL, 5000);
     }
 }

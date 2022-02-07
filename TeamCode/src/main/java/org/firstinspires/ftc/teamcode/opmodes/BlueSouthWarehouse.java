@@ -9,9 +9,9 @@ public class BlueSouthWarehouse extends BlueSouth {
     @Override
     protected void execute() {
         super.execute();
-        if (robot.drivePower < .6) robot.drivePower = .6;
-        robot.drive(-1,0,180,5);
-        robot.drive(1,0,90,132);
+        if (robot.drivePower < 0.6) robot.drivePower = 0.6;
+        robot.drive(-1, 0, +180,   5);
+        robot.drive(+1, 0,  +90, 132);
         robot.lift(FORWARD);
     }
 }

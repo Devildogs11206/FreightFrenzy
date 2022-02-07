@@ -9,7 +9,7 @@ public class RedSouthStorage extends RedSouth {
     @Override
     protected void execute() {
         super.execute();
-        robot.drive(-1,0,-180,12.5);
+        robot.drive(-1, 0, -180, 12.5);
         robot.lift(FORWARD);
     }
 }

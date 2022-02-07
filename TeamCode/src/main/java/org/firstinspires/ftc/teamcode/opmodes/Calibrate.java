@@ -8,8 +8,6 @@ import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 public class Calibrate extends OpMode {
     @Override
     protected void execute() {
-       robot.lift(HIGHGOAL);
-       this.sleep(3000);
        robot.calibrate();
     }
 }

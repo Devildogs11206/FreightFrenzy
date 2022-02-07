@@ -9,9 +9,9 @@ public class RedSouthWarehouse extends RedSouth {
     @Override
     protected void execute() {
         super.execute();
-        if (robot.drivePower < 6) robot.drivePower = .6;
-        robot.drive(-1,0,180,4);  // changed from 5 to 4 in an experiment
-        robot.drive(2,0,-90,111); // changed from 132 to 111 inches
+        if (robot.drivePower < 0.6) robot.drivePower = 0.6;
+        robot.drive(-1, 0, +180,   5);
+        robot.drive(+2, 0,  -90, 132);
         robot.lift(FORWARD);
     }
 }

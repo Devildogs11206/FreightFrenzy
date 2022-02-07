@@ -2,7 +2,7 @@ package org.firstinspires.ftc.teamcode.opmodes;
 
 import static org.firstinspires.ftc.teamcode.internal.Robot.IntakeMode.OUT;
 
-public class RedNorth extends RedOpMode {
+public abstract class RedNorth extends RedOpMode {
     @Override
     public String getDetectorFileName() {
         return "ffrn";
@@ -10,10 +10,9 @@ public class RedNorth extends RedOpMode {
 
     @Override
     protected void execute() {
-        robot.drivePower = 0.5;
         double offset = robot.detectLiftAndGetOffset();
-        robot.drive(1,0,24.1, 23 + offset);
-        robot.intake(OUT,500);
-        robot.drive(-1,0,24.1,offset + 5);
+        robot.drive(+1, 0, +24, 23 + offset);
+        robot.intake(OUT, 500);
+        robot.drive(-1, 0, +24, offset + 5);
     }
 }
