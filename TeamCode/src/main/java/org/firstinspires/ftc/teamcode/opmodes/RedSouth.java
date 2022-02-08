@@ -14,9 +14,9 @@ public abstract class RedSouth extends RedOpMode {
     @Override
     protected void execute() {
         double offset = robot.detectLiftAndGetOffset();
-        robot.drive(+1, 0, -24, 23 + offset);
+        robot.drive(+1, 0, -24, 22 + offset);
         robot.intake(OUT, 500);
-        robot.drive(-1, 0, -24, offset + 5);
+        robot.drive(-1, 0, -24, offset + 4);
         robot.lift(CAROUSEL);
         robot.drive(-1, 0, -90, 43);
         double distance = robot.distanceSensor.getDistance(INCH) - 9.8;

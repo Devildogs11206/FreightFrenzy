@@ -11,8 +11,8 @@ public abstract class BlueNorth extends BlueOpMode {
     @Override
     protected void execute() {
         double offset = robot.detectLiftAndGetOffset();
-        robot.drive(+1, 0, -24, 23 + offset);
+        robot.drive(+1, 0, -24, 22 + offset);
         robot.intake(OUT, 500);
-        robot.drive(-1, 0, -24, offset + 5);
+        robot.drive(-1, 0, -24, offset + 4);
     }
 }
