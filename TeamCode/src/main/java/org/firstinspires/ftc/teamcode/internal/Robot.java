@@ -296,8 +296,8 @@ public class Robot {
     public double detectLiftAndGetOffset() {
         detect();
         lift(scoringLevel);
-        if (scoringLevel == HIGHGOAL) return 3;
-        else if(scoringLevel == MIDGOAL) return 1.5;
+        if (scoringLevel == HIGHGOAL) return 4;
+        else if(scoringLevel == MIDGOAL) return 2;
         return 0;
     }
 

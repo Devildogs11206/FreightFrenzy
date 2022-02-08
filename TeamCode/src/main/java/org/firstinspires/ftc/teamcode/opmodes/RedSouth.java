@@ -5,6 +5,8 @@ import static org.firstinspires.ftc.teamcode.internal.Robot.IntakeMode.OUT;
 import static org.firstinspires.ftc.teamcode.internal.Robot.IntakeMode.REVERSECAROUSEL;
 import static org.firstinspires.ftc.teamcode.internal.Robot.LiftPosition.CAROUSEL;
 
+import org.firstinspires.ftc.teamcode.internal.Robot;
+
 public abstract class RedSouth extends RedOpMode {
     @Override
     public String getDetectorFileName() {

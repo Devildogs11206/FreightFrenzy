@@ -10,7 +10,7 @@ public class RedNorthStorage extends RedNorth {
     protected void execute() {
         super.execute();
         robot.lift(FORWARD);
-        robot.drive(+1,  0, +90, 60);
+        robot.drive(+1,  0, +90, 61);
         robot.drive( 0, +1, +90, 12);
     }
 }
