@@ -271,7 +271,7 @@ public class Robot {
     }
 
     public enum LiftPosition {
-        FORWARD(0), LOWGOAL(-1250), MIDGOAL(-2375),HIGHGOAL(-3866), MAX(-10886), CAROUSEL(-2829); //changed CAROUSEL from -3000 to -3025
+        FORWARD(0), LOWGOAL(-1250), MIDGOAL(-2375),HIGHGOAL(-3866), MAX(-10886), CAROUSEL(-2829), BLUECAROUSEL(-2917), REDCAROUSEL(-2829), TELEOPHIGHGOAL(-3993); //changed CAROUSEL from -3000 to -3025
 
         public int position;
 
@@ -296,8 +296,8 @@ public class Robot {
     public double detectLiftAndGetOffset() {
         detect();
         lift(scoringLevel);
-        if (scoringLevel == HIGHGOAL) return 4;
-        else if(scoringLevel == MIDGOAL) return 2;
+        if (scoringLevel == HIGHGOAL) return 6;
+        else if(scoringLevel == MIDGOAL) return 3;
         return 0;
     }
 

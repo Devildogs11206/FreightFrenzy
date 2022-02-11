@@ -12,7 +12,7 @@ public abstract class RedNorth extends RedOpMode {
     protected void execute() {
         double offset = robot.detectLiftAndGetOffset();
         robot.drive(+1, 0, +24, 22 + offset);
-        robot.intake(OUT, 500);
+        robot.intake(OUT, 250);
         robot.drive(-1, 0, +24, offset + 4);
     }
 }
