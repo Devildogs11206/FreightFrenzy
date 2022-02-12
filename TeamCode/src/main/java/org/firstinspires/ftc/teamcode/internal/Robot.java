@@ -123,6 +123,8 @@ public class Robot {
         driveRightRear.setMode(RUN_USING_ENCODER);
 
         lights = hardwareMap.get(RevBlinkinLedDriver.class,"lights");
+        if (opMode.getAlliance() == Alliance.BLUE) setLights(BLUE);
+        else if (opMode.getAlliance() == Alliance.RED) setLights(RED);
 
         lift = hardwareMap.get(DcMotor.class, "lift");
         lift.setDirection(FORWARD);
@@ -151,9 +153,6 @@ public class Robot {
     }
 
     public void calibrate() {
-        if (opMode.getAlliance() == Alliance.BLUE) setLights(BLUE);
-        else if (opMode.getAlliance() == Alliance.RED) setLights(RED);
-
         lift(HIGHGOAL);
         opMode.sleep(3000);
 
@@ -271,7 +270,7 @@ public class Robot {
     }
 
     public enum LiftPosition {
-        FORWARD(0), LOWGOAL(-1250), MIDGOAL(-2375),HIGHGOAL(-3866), MAX(-10886), CAROUSEL(-2829), BLUECAROUSEL(-2917), REDCAROUSEL(-2829), TELEOPHIGHGOAL(-3993); //changed CAROUSEL from -3000 to -3025
+        FORWARD(0), LOWGOAL(-1250), MIDGOAL(-2375),HIGHGOAL(-3866), MAX(-10886), CAROUSEL(-2829), BLUECAROUSEL(-2873), REDCAROUSEL(-2829), TELEOPHIGHGOAL(-3993); //changed BLUECAROUSEL from -2917 to -2873
 
         public int position;
 

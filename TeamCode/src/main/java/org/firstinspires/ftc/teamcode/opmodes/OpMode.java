@@ -13,7 +13,7 @@ public abstract class OpMode extends LinearOpMode {
     public Robot robot;
 
     public OpMode() {
-        this(true);
+        this(false);
     }
 
     public OpMode(boolean calibrate) {

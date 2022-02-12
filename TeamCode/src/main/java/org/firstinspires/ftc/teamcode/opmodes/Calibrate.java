@@ -1,7 +1,5 @@
 package org.firstinspires.ftc.teamcode.opmodes;
 
-import static org.firstinspires.ftc.teamcode.internal.Robot.LiftPosition.HIGHGOAL;
-
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 
 @Autonomous
